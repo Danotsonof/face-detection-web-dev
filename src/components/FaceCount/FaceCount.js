@@ -1,16 +1,19 @@
 import React from "react";
-import "./FaceCount.css";
 
-const FaceCount = ({ faceCount, imgUrl }) => {
-  return imgUrl ? (
-    <div>
-      <div className="white f3">
-        {`${faceCount} face${faceCount === 1 ? "" : "s"} detected`}
-      </div>
+const FaceCount = ({ faceCount, detect }) => {
+  return (
+    <div
+      style={{
+        position: "static",
+      }}>
+      {detect ? (
+        <h2 className="white f3">
+          {`${faceCount} face${faceCount === 1 ? "" : "s"} detected`}
+        </h2>
+      )
+        : (<h1>&nbsp;</h1>)}
     </div>
-  ) : (
-    <div></div>
-  );
+  )
 };
 
 export default FaceCount;
