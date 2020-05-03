@@ -5,34 +5,35 @@ const SignIn = ({ onRouteChange, setNavItem, loadUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onEmailChange = event => {
+  const onEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const onPasswordChange = event => {
+  const onPasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
   const onSubmit = () => {
+    // onRouteChange("home");
+    // setNavItem("Sign Out")
     const credentials = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
       body: JSON.stringify({
         email: email,
-        password: password
-      })
+        password: password,
+      }),
     };
-
     fetch(`http://localhost:3001/signin`, credentials)
       .then(res => res.json())
       .then(data => {
         if (data.id) {
-          loadUser(data)
+          loadUser(data);
           onRouteChange("home");
-          setNavItem("Sign Out")
+          setNavItem("Sign Out");
         } else onRouteChange("signin");
       });
   };
@@ -78,7 +79,10 @@ const SignIn = ({ onRouteChange, setNavItem, loadUser }) => {
           </div>
           <div className="lh-copy mt3">
             <p
-              onClick={() => { onRouteChange("reg"); setNavItem("Sign In") }}
+              onClick={() => {
+                onRouteChange("reg");
+                setNavItem("Sign In");
+              }}
               className="f6 link dim black db pointer red"
             >
               Register

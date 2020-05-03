@@ -36,7 +36,11 @@ const Register = ({ onRouteChange, setNavItem }) => {
         if (data === email) {
           onRouteChange("signin");
           setNavItem("Register");
-        } else onRouteChange("reg");
+          window.alert("Account successfully created")
+        } else {
+          onRouteChange("reg");
+          window.alert("Kindly try again")
+        }
       });
   };
 
