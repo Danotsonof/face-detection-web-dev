@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-// import JSmodal from "./JSmodal.js";
 import Delete from "./delete.svg";
 import "./ImageLinkForm.css";
-// import "./JSmodalani.css";
 import FaceDetection from "../FaceDetection/FaceDetection";
 
-const ImageLinkForm = ({ user, loadUser, onRouteChange }) => {
+const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
   const imageUrl = document.getElementById("imageUrl");
   const faces = [];
   const [detect, setDetect] = useState(false);
@@ -31,7 +29,7 @@ const ImageLinkForm = ({ user, loadUser, onRouteChange }) => {
         input,
       }),
     };
-    fetch(`http://localhost:3001/imageClarifai`, credentials)
+    fetch(`${serverURL}/imageClarifai`, credentials)
       .then((res) => res.json())
       .then((response) => {
         calculateFaceLocation(response);
@@ -48,7 +46,7 @@ const ImageLinkForm = ({ user, loadUser, onRouteChange }) => {
             entries: faces.length,
           }),
         };
-        fetch(`http://localhost:3001/image`, credentials)
+        fetch(`${serverURL}/image`, credentials)
           .then((res) => {
 		  if(!res.ok) throw new Error(res.status);
 		  else return res.json()
@@ -84,14 +82,13 @@ const ImageLinkForm = ({ user, loadUser, onRouteChange }) => {
         email: user.email,
       }),
     };
-    fetch(`http://localhost:3001/deleteAccount`, credentials)
+    fetch(`${serverURL}/deleteAccount`, credentials)
       .then((res) => {
 		  if(!res.ok) throw new Error(res.status);
 		else return res.json();
 	  })
       .then((data) => {
           onRouteChange("signin");
-          // setNavItem("Register");
         window.alert(data)
       });
   };

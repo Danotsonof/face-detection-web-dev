@@ -27,6 +27,7 @@ const particles = {
 };
 
 const App = () => {
+  const serverURL = 'https://radiant-depths-36646.herokuapp.com'
   const [route, setRoute] = useState("signin");
   const [navItem, setNavItem] = useState("Register");
   const [user, setUser] = useState({
@@ -61,6 +62,7 @@ const App = () => {
       {route === "signin" ? (
         <div>
           <SignIn
+		    serverURL={serverURL}
             onRouteChange={onRouteChange}
             setNavItem={setNavItem}
             loadUser={loadUser}
@@ -68,12 +70,16 @@ const App = () => {
         </div>
       ) : route === "reg" ? (
         <div>
-          <Register onRouteChange={onRouteChange} setNavItem={setNavItem} />
+          <Register
+		  serverURL={serverURL}
+		  onRouteChange={onRouteChange} 
+		  setNavItem={setNavItem} />
         </div>
       ) : (
         <div>
           <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
+		    serverURL={serverURL}
             loadUser={loadUser}
             user={user}
             onRouteChange={onRouteChange}

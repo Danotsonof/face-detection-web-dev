@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Register = ({ onRouteChange, setNavItem }) => {
+const Register = ({ serverURL, onRouteChange, setNavItem }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -30,8 +30,11 @@ const Register = ({ onRouteChange, setNavItem }) => {
         password: password
       })
     };
-    fetch(`http://localhost:3001/register`, credentials)
-      .then(res => res.json())
+    fetch(`${serverURL}/register`, credentials)
+      .then((res) => {
+		  if(!res.ok) console.log(res);
+		else return res.json();
+	  })
       .then(data => {
         if (data === email) {
           onRouteChange("signin");

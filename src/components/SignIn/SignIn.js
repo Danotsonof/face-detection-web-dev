@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-// import "./FaceCount.css";
 
-const SignIn = ({ onRouteChange, setNavItem, loadUser }) => {
+const SignIn = ({ serverURL, onRouteChange, setNavItem, loadUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,8 +13,6 @@ const SignIn = ({ onRouteChange, setNavItem, loadUser }) => {
   };
 
   const onSubmit = () => {
-    // onRouteChange("home");
-    // setNavItem("Sign Out")
     const credentials = {
       method: "POST",
       headers: {
@@ -27,7 +24,7 @@ const SignIn = ({ onRouteChange, setNavItem, loadUser }) => {
         password: password,
       }),
     };
-    fetch(`http://localhost:3001/signin`, credentials)
+    fetch(`${serverURL}/signin`, credentials)
       .then(res => res.json())
       .then(data => {
         if (data.id) {
