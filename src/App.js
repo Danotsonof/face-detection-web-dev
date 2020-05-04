@@ -27,7 +27,10 @@ const particles = {
 };
 
 const App = () => {
-  const serverURL = 'https://radiant-depths-36646.herokuapp.com'
+  // For development mode on local machine use:
+  const serverURL = 'http://localhost:3000'
+  // For deployment on heroku, use below
+  // const serverURL = 'https://radiant-depths-36646.herokuapp.com'
   const [route, setRoute] = useState("signin");
   const [navItem, setNavItem] = useState("Register");
   const [user, setUser] = useState({
