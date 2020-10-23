@@ -31,7 +31,7 @@ const App = () => {
   const serverURL = 'http://localhost:3000'
   // For deployment on heroku, use below
   // const serverURL = 'https://radiant-depths-36646.herokuapp.com'
-  const [route, setRoute] = useState("signin");
+  const [route, setRoute] = useState("home");
   const [navItem, setNavItem] = useState("Register");
   const [user, setUser] = useState({
     id: "",
@@ -79,7 +79,7 @@ const App = () => {
 		  setNavItem={setNavItem} />
         </div>
       ) : (
-        <div>
+        <div className="home_wrapper">
           <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
 		    serverURL={serverURL}

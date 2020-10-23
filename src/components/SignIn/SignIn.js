@@ -13,6 +13,11 @@ const SignIn = ({ serverURL, onRouteChange, setNavItem, loadUser }) => {
   };
 
   const onSubmit = () => {
+    if (!email || !password) {
+      window.alert("input the fields.")
+      return 0
+    }
+        
     const credentials = {
       method: "POST",
       headers: {

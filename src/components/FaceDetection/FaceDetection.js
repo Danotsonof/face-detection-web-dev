@@ -12,9 +12,9 @@ const FaceDetection = ({ imgUrl, faceCount, face, detect }) => {
       }}>
 
       <FaceCount faceCount={faceCount} detect={detect} />
+
       <div
         style={{
-          position: "fixed",
           marginTop: "4em",
         }}
       >

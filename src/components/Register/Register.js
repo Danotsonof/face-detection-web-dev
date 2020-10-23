@@ -18,6 +18,19 @@ const Register = ({ serverURL, onRouteChange, setNavItem }) => {
   };
 
   const onRegister = () => {
+    if (!email || !password || !name) {
+      window.alert("Kindly input all fields.")
+      return 0
+    }
+    
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    if(!re.test(email)){
+      window.alert("Input a valid email.")
+        return 0
+    }
+
     const credentials = {
       method: "POST",
       headers: {

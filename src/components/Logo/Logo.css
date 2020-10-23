@@ -1,8 +1,24 @@
 .Tilt {
-    background: linear-gradient(to right, purple , red)
+    background: linear-gradient(to right, purple , red);
+    
+}
+@media (min-width: 600px) {
+    .Logo {
+        height: 170px;
+        width: 150px;
+    }
 }
 
-.Logo {
-    height: 170px;
-    width: 150px;
+@media (max-width: 600px) {
+    .Logo {
+    height: 85px;
+    width: 75px;
 }
+}
+nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 3em;
+    }
+
