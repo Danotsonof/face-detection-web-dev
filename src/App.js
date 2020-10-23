@@ -7,13 +7,14 @@ import Register from "./components/Register/Register";
 import "./App.css";
 import Particles from "react-particles-js";
 
+// Parameters for the Particles library
 const particles = {
   particles: {
     number: {
-      value: 200,
+      value: 150,
     },
     size: {
-      value: 5,
+      value: 2,
     },
   },
   interactivity: {
@@ -31,7 +32,7 @@ const App = () => {
   const serverURL = 'http://localhost:3000'
   // For deployment on heroku, use below
   // const serverURL = 'https://radiant-depths-36646.herokuapp.com'
-  const [route, setRoute] = useState("home");
+  const [route, setRoute] = useState("signin");
   const [navItem, setNavItem] = useState("Register");
   const [user, setUser] = useState({
     id: "",

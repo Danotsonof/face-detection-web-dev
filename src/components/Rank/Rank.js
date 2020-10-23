@@ -1,6 +1,7 @@
 import React from 'react';
 import "../ImageLinkForm/ImageLinkForm.css";
 
+// Displays the culmulative faces detected
 const Rank = ({ name, entries }) => {
   return (
     <div>

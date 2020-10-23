@@ -1,6 +1,7 @@
 import React from "react";
 import "../FaceDetection/FaceDetection.css";
 
+// Displays box around the faces detected
 const FaceDisplay = ({ head }) => {
   return (
     <div

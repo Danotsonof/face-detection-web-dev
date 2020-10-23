@@ -5,26 +5,29 @@ const Register = ({ serverURL, onRouteChange, setNavItem }) => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  // Handles changes in email input field
   const onEmailChange = event => {
     setEmail(event.target.value);
   };
 
+  // Handles changes in password input field
   const onPasswordChange = event => {
     setPassword(event.target.value);
   };
 
+  // Handles changes in name input field
   const onNameChange = event => {
     setName(event.target.value);
   };
 
+  // Handles registration on users
   const onRegister = () => {
     if (!email || !password || !name) {
-      window.alert("Kindly input all fields.")
+      window.alert("Fill all fields.")
       return 0
     }
     
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     if(!re.test(email)){
       window.alert("Input a valid email.")

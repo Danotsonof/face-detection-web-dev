@@ -4,6 +4,7 @@ import "./ImageLinkForm.css";
 import FaceDetection from "../FaceDetection/FaceDetection";
 
 const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
+  // Scoped Variables 
   const imageUrl = document.getElementById("imageUrl");
   const faces = [];
   const [detect, setDetect] = useState(false);
@@ -11,13 +12,14 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
   const [faceCount, setfaceCount] = useState(0);
   const [faceBoundaries, setFaceBoundaries] = useState([]);
   
+  // Detects changes in image url
   const onInputChange = (event) => {
-    document.getElementById("image_upload").value=null;
     setDetect(false);
     setFaceBoundaries([]);
     setInput(event.target.value);
   };
   
+  // Checks for faces on image
   const onButtonClick = () => {
     if (detect) {
       return 0;
@@ -64,6 +66,7 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
       });
   };
 
+  // Loads image from public folder
   const showImage = e => {
     console.log(e.target.files)
     console.log("2")
@@ -85,6 +88,7 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
     }
   }
 
+  // Deletes user account
   const del = () => {
 	  let prompt = window.prompt(
                     "Please enter your username to confirm delete",
@@ -117,6 +121,7 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
       });
   };
 
+  // Calculates the location of faces detected
   const calculateFaceLocation = (data) => {
     const image = document.getElementById("image");
     const width = Number(image.width);
@@ -138,7 +143,9 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
   return (
     <div className="wrapper" >
       <div >
-        <p className="text"><strong>This detects faces in your pictures.</strong></p>
+        <p className="text"><strong>Paste the URL of an image or upload an image from your PC.</strong></p>
+        <p className="text"><strong>Then click on the Detect button.</strong></p>
+        <p className="text">Image should contain human faces.</p>
         <div className="center input">
           <div className="form center pa2 br3 shadow-5">
             <input
@@ -157,20 +164,18 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
           </div>
         </div>
         <div >
-        <label className="image_upload" htmlFor="image_upload">... or Select an Image</label>
-          <input type="file" accept="image/*" style={{visibility: "hidden"}}  id="image_upload"
+        <label className="image_upload" htmlFor="image_upload">Select an Image</label>
+          <input type="file" accept="image/*" style={{display: "none"}}  id="image_upload"
             onChange={showImage}
           />
         </div>
       </div>
-      <div>
         <FaceDetection
           imgUrl={input}
           faceCount={faceCount}
           face={faceBoundaries}
           detect={detect}
         />
-      </div>
       <footer>
         <div className="footer">
           <p

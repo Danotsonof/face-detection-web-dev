@@ -4,18 +4,28 @@ const SignIn = ({ serverURL, onRouteChange, setNavItem, loadUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Handles changes in email input field
   const onEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
+  // Handles changes in password input field
   const onPasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+  // Handles user's sign in
   const onSubmit = () => {
     if (!email || !password) {
-      window.alert("input the fields.")
+      window.alert("Fill all fields.")
       return 0
+    }
+
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    if(!re.test(email)){
+      window.alert("Input a valid email.")
+        return 0
     }
         
     const credentials = {

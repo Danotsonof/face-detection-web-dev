@@ -3,6 +3,7 @@ import Tilt from "react-tilt";
 import './Logo.css'
 import face from './face.png'
 
+// Loads the logo and nav bar
 const Logo = ({ onRouteChange, navItem, setNavItem }) => {
   const href = {
     'Register': 'reg',
@@ -17,7 +18,7 @@ const Logo = ({ onRouteChange, navItem, setNavItem }) => {
 
   return (
     <nav className="">
-      <div className="pa2">
+      <div className="pa3">
         <Tilt
           className="Tilt br2 shadow-2"
           options={{ max: 50 }}
@@ -26,7 +27,7 @@ const Logo = ({ onRouteChange, navItem, setNavItem }) => {
         </Tilt>
       </div>
     
-        <div className="pa2">
+        <div className="pa3">
           <p className="f6 link pointer fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
             onClick={() => { onRouteChange(href[navItem]); setNavItem(nav[navItem]) }} >
             {navItem}

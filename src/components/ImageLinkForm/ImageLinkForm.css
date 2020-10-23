@@ -1,12 +1,14 @@
 @media (min-width: 600px) {
   .text {
       font-size: 1.5rem;
-  }
+      margin: .25em;
+    }
 }
 
 @media (max-width: 600px) {
   .text {
     font-size: 1rem;
+    margin: .25em;
   }
 }
 
@@ -56,7 +58,7 @@
       )
       0 0,
     linear-gradient(90deg, #b71 2%, #fb1 0, #fb1 98%, #b71 0%) 0 0 #fb1;
-  background: linear-gradient(to right, purple, red);
+  background: linear-gradient(to right, rgb(34, 16, 34), rgb(13, 32, 30));
 }
 
 #image_upload {
@@ -66,7 +68,7 @@
 
 .image_upload {
     transition-duration: 0.4s;
-    background-color: purple; 
+    background-color: rgb(184, 8, 184); 
   color: white; 
   border: 2px solid white;
   padding: .5rem;
@@ -87,6 +89,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  color: red;
 }
 footer {
   display: flex;
@@ -99,7 +102,7 @@ footer {
 }
 
 #footer {
-  background-color: black !important;
+  background-color: red !important;
   width: fit-content;
 }
 

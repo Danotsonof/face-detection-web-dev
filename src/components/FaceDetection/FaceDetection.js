@@ -5,19 +5,11 @@ import FaceCount from "../FaceCount/FaceCount";
 
 const FaceDetection = ({ imgUrl, faceCount, face, detect }) => {
   return (
-    <div
-      className="center"
-      style={{
-        padding: "1em"
-      }}>
+    <div className="center face_detection">
 
       <FaceCount faceCount={faceCount} detect={detect} />
 
-      <div
-        style={{
-          marginTop: "4em",
-        }}
-      >
+      <div className="img">
         <img
           id="image"
           className="w-100 f5 measure"
