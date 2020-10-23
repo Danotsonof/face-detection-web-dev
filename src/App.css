@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.home_wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .center {

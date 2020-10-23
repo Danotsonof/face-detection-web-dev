@@ -4,17 +4,22 @@ import "./ImageLinkForm.css";
 import FaceDetection from "../FaceDetection/FaceDetection";
 
 const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
+  // Scoped Variables 
   const imageUrl = document.getElementById("imageUrl");
   const faces = [];
   const [detect, setDetect] = useState(false);
   const [input, setInput] = useState("");
   const [faceCount, setfaceCount] = useState(0);
   const [faceBoundaries, setFaceBoundaries] = useState([]);
+  
+  // Detects changes in image url
   const onInputChange = (event) => {
     setDetect(false);
     setFaceBoundaries([]);
     setInput(event.target.value);
   };
+  
+  // Checks for faces on image
   const onButtonClick = () => {
     if (detect) {
       return 0;
@@ -61,14 +66,37 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
       });
   };
 
+  // Loads image from public folder
+  const showImage = e => {
+    console.log(e.target.files)
+    console.log("2")
+      let imageFile = e.target.files[0]
+
+    if(!imageFile.name.match(/\.(jpg|jpeg|png|gif)$/)){
+      window.alert("Kindly select the right image format.")
+        return 0
+    }
+
+    if(imageFile){
+      const reader = new FileReader()
+      reader.onload = x => {
+        setInput(x.target.result);
+      }
+      reader.readAsDataURL(imageFile)
+    } else {
+      setInput("");
+    }
+  }
+
+  // Deletes user account
   const del = () => {
 	  let prompt = window.prompt(
                     "Please enter your username to confirm delete",
                     "Username"
                   )
-	if (prompt === null || prompt === "") {
-  return 0
-} else if (prompt.toLowerCase() !== user.name.toLowerCase()) {
+    if (prompt === null || prompt === "") {
+      return 0
+    } else if (prompt.toLowerCase() !== user.name.toLowerCase()) {
 		  return 0
 	  }
 	  
@@ -93,6 +121,7 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
       });
   };
 
+  // Calculates the location of faces detected
   const calculateFaceLocation = (data) => {
     const image = document.getElementById("image");
     const width = Number(image.width);
@@ -110,40 +139,48 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
     setfaceCount(faces.length);
     setDetect(true);
   };
+
   return (
-    <div>
-      <div>
-        <p className="f3">{"This detects faces in your pictures."}</p>
-        <div className="center">
-          <div className="form center pa4 br3 shadow-5">
+    <div className="wrapper" >
+      <div >
+        <p className="text"><strong>Paste the URL of an image or upload an image from your PC.</strong></p>
+        <p className="text"><strong>Then click on the Detect button.</strong></p>
+        <p className="text">Image should contain human faces.</p>
+        <div className="center input">
+          <div className="form center pa2 br3 shadow-5">
             <input
-              className="f4 pa2 w-70 center"
+              className="f4  w-70 center"
               type="text"
               id="imageUrl"
+              placeholder="Paste image url here"
               onChange={onInputChange}
             />
             <button
-              className="w-30 grow f4 link ph3 pv2 dib white bg-light-purple"
+              className="w-30 grow f5 link ph3 pv2 dib white bg-light-purple"
               onClick={onButtonClick}
             >
               Detect
             </button>
           </div>
         </div>
+        <div >
+        <label className="image_upload" htmlFor="image_upload">Select an Image</label>
+          <input type="file" accept="image/*" style={{display: "none"}}  id="image_upload"
+            onChange={showImage}
+          />
+        </div>
       </div>
-      <div>
         <FaceDetection
           imgUrl={input}
           faceCount={faceCount}
           face={faceBoundaries}
           detect={detect}
         />
-      </div>
       <footer>
         <div className="footer">
           <p
             id="footer"
-            className="pointer link white-60 hover-white inline-flex items-center ma2 tc br2 pa2"
+            className="pointer link white-60 hover-white inline-flex items-center ma2 tc br2 pa1"
             onClick={del}
           >
             <img src={Delete} alt="Delete Account" />

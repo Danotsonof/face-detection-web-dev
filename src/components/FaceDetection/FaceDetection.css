@@ -6,3 +6,12 @@
     justify-content: center;
     cursor: pointer;
   }
+
+  .face_detection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .img{
+    padding: 0em .5em;
+  }

@@ -1,5 +1,6 @@
 import React from "react";
 
+// Displays the number of faces detected on Image
 const FaceCount = ({ faceCount, detect }) => {
   return (
     <div
