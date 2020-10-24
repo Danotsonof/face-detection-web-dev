@@ -4,6 +4,7 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import SignIn from "./components/SignIn/SignIn";
 import Register from "./components/Register/Register";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import "./App.css";
 import Particles from "react-particles-js";
 
@@ -56,6 +57,7 @@ const App = () => {
   };
 
   return (
+    <ErrorBoundary>      
     <div className="App">
       <Particles className="particles" params={particles} />
       <Logo
@@ -91,6 +93,7 @@ const App = () => {
         </div>
       )}
     </div>
+    </ErrorBoundary>
   );
 };
 

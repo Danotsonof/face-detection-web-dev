@@ -46,7 +46,11 @@ const SignIn = ({ serverURL, onRouteChange, setNavItem, loadUser }) => {
           loadUser(data);
           onRouteChange("home");
           setNavItem("Sign Out");
-        } else onRouteChange("signin");
+          window.alert("Sign in successful.")
+        } else {
+          onRouteChange("signin");
+          window.alert("Wrong credentials, try again.")
+        }
       });
   };
 
