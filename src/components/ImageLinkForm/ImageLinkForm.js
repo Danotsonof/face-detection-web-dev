@@ -68,9 +68,12 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
 
   // Loads image from public folder
   const showImage = e => {
-    console.log(e.target.files)
-    console.log("2")
-      let imageFile = e.target.files[0]
+    setDetect(false);
+    setFaceBoundaries([]);
+
+    let imageFile = e.target.files[0]
+    
+    if(imageFile == null) return 0
 
     if(!imageFile.name.match(/\.(jpg|jpeg|png|gif)$/)){
       window.alert("Kindly select the right image format.")
@@ -143,9 +146,9 @@ const ImageLinkForm = ({ serverURL, user, loadUser, onRouteChange }) => {
   return (
     <div className="wrapper" >
       <div >
-        <p className="text"><strong>Paste the URL of an image or upload an image from your PC.</strong></p>
-        <p className="text"><strong>Then click on the Detect button.</strong></p>
-        <p className="text">Image should contain human faces.</p>
+        <small className="f6 red db mb2"><strong>Paste the URL of an image or upload an image from your PC.</strong></small>
+        <small className="f6 red db mb2"><strong>Then click on the Detect button.</strong></small>
+        <small className="f6 red db mb2">Image should contain human faces.</small>
         <div className="center input">
           <div className="form center pa2 br3 shadow-5">
             <input

@@ -1,17 +1,3 @@
-@media (min-width: 600px) {
-  .text {
-      font-size: 1.5rem;
-      margin: .25em;
-    }
-}
-
-@media (max-width: 600px) {
-  .text {
-    font-size: 1rem;
-    margin: .25em;
-  }
-}
-
 .form {
   width: 700px;
   background: radial-gradient(
@@ -90,6 +76,7 @@
   flex-direction: column;
   flex-grow: 1;
   color: red;
+  margin-top: 1em;
 }
 footer {
   display: flex;

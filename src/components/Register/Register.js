@@ -26,11 +26,21 @@ const Register = ({ serverURL, onRouteChange, setNavItem }) => {
       window.alert("Fill all fields.")
       return 0
     }
-    
+    const pw = /^((?=.*[a-z])(?=.*[A-Z]))(?=.{6,})/;
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     if(!re.test(email)){
       window.alert("Input a valid email.")
+        return 0
+    }
+
+    if (password.length < 6){
+      window.alert("Password must be at least 6 characters.")
+        return 0
+    }
+
+    if(!pw.test(password)){
+      window.alert("Password must contain atleast 1 lowercase and 1 uppercase.")
         return 0
     }
 
@@ -48,7 +58,7 @@ const Register = ({ serverURL, onRouteChange, setNavItem }) => {
     };
     fetch(`${serverURL}/register`, credentials)
       .then((res) => {
-		  if(!res.ok) console.log(res);
+		  if(!res.ok) return "";
 		else return res.json();
 	  })
       .then(data => {
@@ -107,10 +117,14 @@ const Register = ({ serverURL, onRouteChange, setNavItem }) => {
             <input
               className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
               type="password"
+              aria-describedby="pw-desc"
               name="password"
               id="password"
               onChange={onPasswordChange}
             />
+            <small id="pw-desc" className="f6 black db mb2">
+              Password must contain atleast 1 lowercase and 1 uppercase and must be atleast 6 characters
+            </small>
           </div>
         </fieldset>
         <div className="mt3">
